@@ -1,0 +1,390 @@
+<!doctype html>
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Sistema De Consulatas</title>
+<meta name="description"
+	content="Lead Smith - Maintain Excel Files Record">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="stylesheet"
+	th:href="@{/assets/css/bootstrap-datepicker3.css}">
+<link rel="stylesheet" th:href="@{/assets/css/normalize.css}">
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/themify-icons.css}">
+<link rel="stylesheet" th:href="@{/assets/css/flag-icon.min.css}">
+<link rel="stylesheet" th:href="@{/assets/css/cs-skin-elastic.css}">
+<link rel="stylesheet"
+	th:href="@{/assets/css/lib/datatable/dataTables.bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/assets/scss/style.css}">
+<link th:href="@{/assets/css/lib/vector-map/jqvmap.min.css}"
+	rel="stylesheet">
+<link rel="stylesheet"
+	th:href="@{/assets/css/lib/chosen/chosen.min.css}">
+<!-- CSS -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css" />
+<!-- Default theme -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css" />
+<!-- Semantic UI theme -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/semantic.min.css" />
+<!-- Bootstrap theme -->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/bootstrap.min.css" />
+<link
+	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="assets/css/custom.css">
+<style>
+td.details-control {
+	background: url('images/details_open.png') no-repeat center center;
+	cursor: pointer;
+}
+
+tr.shown td.details-control {
+	background: url('images/details_close.png') no-repeat center center;
+}
+
+.btn-logout {
+	background: white;
+	border: none;
+	color: black;
+	padding: 4px 16px;
+	font-size: 16px;
+	cursor: pointer;
+}
+</style>
+</head>
+<body>
+	<aside id="left-panel" class="left-panel">
+		<nav class="navbar navbar-expand-sm navbar-default">
+
+			<div class="navbar-header">
+				<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#main-menu" aria-controls="main-menu"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<i class="fa fa-bars"></i>
+				</button>
+				<a class="navbar-brand" href="/employee"><img th:src="@{/images/ologo.jpeg}" /></a>
+			</div>
+
+			<div id="main-menu" class="main-menu collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#"> <i
+							class="menu-icon fa fa-dashboard"></i>Dashboard
+					</a></li>
+					<h3 class="menu-title">Sistema De Consulatas</h3>
+					<li th:if="${#request.isUserInRole('ROLE_ADMIN')}"><a
+						th:href="@{/employee}"> <i class="menu-icon fa fa-laptop"></i>User
+							Management
+					</a></li>
+					<li><a th:href="@{/santo/domingo}"> <i
+							class="menu-icon fa fa-laptop"></i>Add Data
+					</a></li>
+					
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</nav>
+	</aside>
+	<!-- /#left-panel -->
+
+	<!-- Left Panel -->
+
+	<!-- Right Panel -->
+
+	<div id="right-panel" class="right-panel">
+
+		<!-- Header-->
+		<header id="header" class="header">
+
+			<div class="header-menu">
+
+				<div class="col-sm-7">
+					<a id="menuToggle" class="menutoggle pull-left"><i
+						class="fa fa fa-tasks"></i></a>
+				</div>
+				<a class="btn-logout pull-right" th:href="@{/logout}"> <i
+					class="fa fa-sign-out"></i> Logout
+				</a>
+			</div>
+		</header>
+		<div class="content mt-3">
+		
+
+
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<small>Data </small>Entry
+					</div>
+					<form th:action="@{/santo/domingo/save}" method="post"
+						th:object="${santoDomingo}">
+						<div class="card-body card-block">
+							
+							<div class="form-row">
+								
+								<div class="form-group col-md-6">
+									<label for="inputPassword4">Foto</label> <input
+										type="text" class="form-control" name="lastName"
+										placeholder="Last Name" th:field="*{fotoPath}">
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputEmail4">Fecha</label> <input type="text"
+										class="form-control" name="firstName" placeholder="First Name"
+										id="fecha"
+										th:field="*{fecha}">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputState">Documento</label> <select
+										name="documento"
+										th:field="*{documento}"
+										class="standardSelect form-control"
+										data-placeholder="Choose a File..." tabindex="1">
+										<option th:each="doc : ${documento}"
+											th:value="${doc}" th:utext="${doc}"></option>
+									</select>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputCity">Primer Nombre</label> <input type="email"
+										class="form-control" name="email" placeholder="Primer Nombre"
+										th:field="*{primerNombre}">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputZip">Segundo Nombre</label> <input type="text"
+										class="form-control" name="phone" placeholder="Segundo Nombre"
+										th:field="*{segundoNombre}">
+								</div>
+							</div>
+							<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="inputAddress">Apellidos</label> <input type="text"
+									class="form-control" name="address" placeholder="Apellidos"
+									th:field="*{apellidos}">
+							</div>
+								<div class="form-group col-md-6">
+									<label for="inputZip">Nacionalidad</label> <input
+										type="text" class="form-control" name="localAccomodation"
+										placeholder="Nacionalidad"
+										th:field="*{nacionalidad}">
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputZip">Oficio Numero</label> <input
+										type="text" class="form-control" name="drivingLicenseNo"
+										placeholder="Oficio Numero"
+										th:field="*{oficioNumero}">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputZip">Fecha De Oficio</label> <input type="text"
+										class="form-control" name="weight" placeholder="Weight"
+										id="Oficio"
+										th:field="*{fechaDeOficio}">
+								</div>
+							</div>
+							<div class="form-row">
+								
+								<div class="form-group col-md-6">
+									<label for="inputZip">Detalle</label> <input type="text"
+										class="form-control" name="height" placeholder="Detalle"
+										th:field="*{detalle}">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputZip">Otros</label> <input type="text"
+										class="form-control" name="age" placeholder="Otros" id="age"
+										th:field="*{otros}">
+								</div>
+							</div>
+							<div class="form-row">
+								
+								<div class="form-group col-md-12">
+									<label for="inputZip">Attachment</label> <input type="file"
+										class="form-control" name="height" placeholder="Attachment"
+										>
+								</div>
+								
+							</div>
+						</div>
+
+						<div class="card-footer">
+							<button type="submit" class="btn btn-primary btn-sm"
+								id="submit-btn">
+								<i class="fa fa-dot-circle-o"></i> Submit
+							</button>
+							<button type="reset" class="btn btn-danger btn-sm" id="reset">
+								<i class="fa fa-ban"></i> Reset
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+				<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header">
+						<strong class="card-title">All Records</strong>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="atomic-ski-data-table"
+								class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Email</th>
+										<th>Phone</th>
+										
+										<th>Action</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<!-- <tbody>
+									<tr th:each="atmski : ${atomicskies}">
+										<td th:text="${atmski.firstName}"></td>
+										<td th:text="${atmski.lastName}"></td>
+										<td th:text="${atmski.email}"></td>
+										<td th:text="${atmski.phone}"></td>
+										
+										<td><a
+											th:href="@{/atomicski/fetch/{id}(id=${atmski.atomicSkiId})}"
+											class="btn btn-danger btn-sm">Fetch</a></td>
+										<td><a
+											th:href="@{/pdf/{id}(id=${atmski.atomicSkiId})}" target="_blank"
+											class="btn btn-danger btn-sm">Print</a></td>
+									</tr>
+								</tbody> -->
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	<!-- /#right-panel -->
+
+	<script th:src="@{/assets/js/vendor/jquery-2.1.4.min.js}"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+	<script th:src="@{/assets/js/plugins.js}"></script>
+	<script th:src="@{/assets/js/main.js}"></script>
+	<script th:src="@{/assets/js/dashboard.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/datatables.min.js}"></script>
+	<script
+		th:src="@{/assets/js/lib/data-table/dataTables.bootstrap.min.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/dataTables.buttons.min.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/buttons.bootstrap.min.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/jszip.min.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/pdfmake.min.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/vfs_fonts.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/buttons.html5.min.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/buttons.print.min.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/buttons.colVis.min.js}"></script>
+	<script th:src="@{/assets/js/lib/data-table/datatables-init.js}"></script>
+	<script th:src="@{/assets/js/lib/bootstrap-datepicker.js}"></script>
+	<script th:src="@{/assets/js/lib/bootstrap-datepicker.de.min.js}"></script>
+	<script th:src="@{/assets/js/lib/jquery.inputmask.bundle.min.js}"></script>
+	<script th:src="@{/assets/js/lib/chosen/chosen.jquery.min.js}"></script>
+	<script
+		src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/alertify.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.js"></script>
+	<script>
+		$('a[href*="#"]')
+		// Remove links that don't actually link to anything
+		.not('[href="#"]').not('[href="#0"]').click(
+				function(event) {
+					// On-page links
+					if (location.pathname.replace(/^\//, '') == this.pathname
+							.replace(/^\//, '')
+							&& location.hostname == this.hostname) {
+						// Figure out element to scroll to
+						var target = $(this.hash);
+						target = target.length ? target : $('[name='
+								+ this.hash.slice(1) + ']');
+						// Does a scroll target exist?
+						if (target.length) {
+							// Only prevent default if animation is actually gonna happen
+							event.preventDefault();
+							$('html, body').animate({
+								scrollTop : target.offset().top
+							}, 1000, function() {
+								// Callback after animation
+								// Must change focus!
+								var $target = $(target);
+								$target.focus();
+								if ($target.is(":focus")) { // Checking if the target was focused
+									return false;
+								} else {
+									$target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+									$target.focus(); // Set focus again
+								}
+								;
+							});
+						}
+					}
+				});
+
+		jQuery(document).ready(function() {
+			jQuery(".standardSelect").chosen({
+				disable_search_threshold : 3,
+				no_results_text : "Oops, nothing found!",
+				width : "100%"
+			});
+		});
+
+		$('#fecha').datepicker({
+
+			format : 'mm-dd-yyyy',
+			autoclose : true
+
+		});
+
+		$('#Oficio').datepicker({
+
+			format : 'mm-dd-yyyy',
+			autoclose : true
+
+		});
+
+
+		$('#atomic-ski-data-table').DataTable({
+			"paging" : true,
+			"lengthChange" : true,
+			"searching" : true,
+			"ordering" : true,
+			"info" : false,
+			"responsive" : true,
+			"autoWidth" : false,
+			"pageLength" : 10,
+			"order" : [ [ 1, 'asc' ] ]
+		});
+
+		
+
+		
+		
+		
+	</script>
+	<script th:if="${santoDomingo.santoDomingoId == null}">
+		$('#fecha').datepicker('setDate', 'today');
+		$('#Oficio').datepicker('setDate', 'today');
+		
+	</script>
+</body>
+</html>
+
