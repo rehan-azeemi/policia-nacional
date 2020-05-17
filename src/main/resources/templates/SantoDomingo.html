@@ -126,18 +126,31 @@ tr.shown td.details-control {
 					<div class="card-header">
 						<small>Data </small>Entry
 					</div>
-					<form th:action="@{/santo/domingo/save}" method="post"
+					<form th:action="@{/santo/domingo/save}" method="post" enctype="multipart/form-data"
 						th:object="${santoDomingo}">
+						<input type="hidden" th:field="*{id}"/>
 						<div class="card-body card-block">
-							
-							<div class="form-row">
-								
-								<div class="form-group col-md-6">
-									<label for="inputPassword4">Foto</label> <input
-										type="text" class="form-control" name="lastName"
-										placeholder="Last Name" th:field="*{fotoPath}">
-								</div>
+							<div class="form-row" id="showImage" >
+								<img class="form-control-file" id="imgSpn"style="height: auto;width: 15%" th:src="${imageName}" />
 							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label class="form-control-label">Foto :</label>
+
+									<input type="file" id="fileUploadForm" class="btn btn-primary btn-sm btn-file validateImageFile changeFile"
+										   name="image" th:required="id==null" th:field="*{foto}">
+<!--									<a href="#" id="removeBtn" th:if="${imageName}" class="btn btn-primary btn-sm removeImg fileinput-exists"-->
+<!--									   onclick="imageRequiredTrue()"-->
+<!--									   data-dismiss="fileinput">Remove</a>-->
+
+
+									<span style="color: red; font-size: 13px;float: left;width: 55%" id="fileEr"></span>
+									<br/>
+									<span style="color: #2991d9; font-size: 12px;">Max file size 1MB, Only JPEG & PNG allow</span>
+								</div>
+
+							</div>
+							<hr>
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="inputEmail4">Fecha</label> <input type="text"
@@ -208,14 +221,30 @@ tr.shown td.details-control {
 										th:field="*{otros}">
 								</div>
 							</div>
-							<div class="form-row">
-								
-								<div class="form-group col-md-12">
-									<label for="inputZip">Attachment</label> <input type="file"
-										class="form-control" name="height" placeholder="Attachment"
-										>
+							<div class="form-row" id="showFile" >
+								<div class="form-group col-md-6">
+									<a  id="fileSpan" th:href="${attachmentName}" >
+										<span style="color: red;">Pdf File</span>
+									</a>
 								</div>
-								
+							</div>
+							<hr>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label class="form-control-label">Select File :</label>
+
+									<input type="file" id="attachment" class="btn btn-primary btn-sm btn-file validateFile changeFile" accept="application/pdf"
+										   name="claimFile" th:required="id==null" th:field="*{attachment}">
+<!--									<a href="#" id="removeFileBtn" th:if="${attachmentName}" class="btn btn-primary btn-sm removeFile fileinput-exists"-->
+<!--									   onclick="fileRequiredTrue()"-->
+<!--									   data-dismiss="fileinput">Remove</a>-->
+
+
+									<span style="color: red; font-size: 13px;float: left;width: 55%" id="fileError"></span>
+									<br/>
+									<span style="color: #2991d9; font-size: 12px;">Max file size 2MB, Only Pdf allow</span>
+									<hr>
+								</div>
 							</div>
 						</div>
 
@@ -242,30 +271,34 @@ tr.shown td.details-control {
 								class="table table-striped table-bordered">
 								<thead>
 									<tr>
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Email</th>
-										<th>Phone</th>
-										
+										<th>Documento</th>
+										<th>Primer Nombre</th>
+										<th>Fecha</th>
+										<th>Segundo Nombre</th>
+										<th>Nacionalidad</th>
+										<th>Action</th>
 										<th>Action</th>
 										<th>Action</th>
 									</tr>
 								</thead>
-								<!-- <tbody>
-									<tr th:each="atmski : ${atomicskies}">
-										<td th:text="${atmski.firstName}"></td>
-										<td th:text="${atmski.lastName}"></td>
-										<td th:text="${atmski.email}"></td>
-										<td th:text="${atmski.phone}"></td>
-										
+								<tbody>
+									<tr th:each="item : ${santoDomingoList}">
+										<td th:text="${item.documento}"></td>
+										<td th:text="${item.primerNombre}"></td>
+										<td th:text="${item.fecha}"></td>
+										<td th:text="${item.segundoNombre}"></td>
+										<td th:text="${item.nacionalidad}"></td>
 										<td><a
-											th:href="@{/atomicski/fetch/{id}(id=${atmski.atomicSkiId})}"
-											class="btn btn-danger btn-sm">Fetch</a></td>
+											th:href="@{/santo/domingo/edit/{id}(id=${item.id})}"
+											class="btn btn-danger btn-sm">Edit</a></td>
 										<td><a
-											th:href="@{/pdf/{id}(id=${atmski.atomicSkiId})}" target="_blank"
+												th:href="@{/santo/domingo/delete/{id}(id=${item.id})}"
+												class="btn btn-danger btn-sm">Delete</a></td>
+										<td><a
+											th:href="@{/santo/domingo/print/{id}(id=${item.id})}" target="_blank"
 											class="btn btn-danger btn-sm">Print</a></td>
 									</tr>
-								</tbody> -->
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -345,7 +378,24 @@ tr.shown td.details-control {
 				no_results_text : "Oops, nothing found!",
 				width : "100%"
 			});
+			if($('#imgSpn').val()=="" && $('#imgSpn').attr('src')=="") {
+				imageRequiredTrue();
+			}
+			if($('#fileSpan').val()=="" && $('#fileSpan').attr('href')=="") {
+				fileRequiredTrue();
+			}
 		});
+
+		function imageRequiredTrue(){
+			// $('#fileUploadForm').attr('required', true);
+			$('#showImage').hide();
+		}
+
+		function fileRequiredTrue(){
+			// $('#attachment').attr('required', true);
+			$('#showFile').hide();
+
+		}
 
 		$('#fecha').datepicker({
 
@@ -360,6 +410,82 @@ tr.shown td.details-control {
 			autoclose : true
 
 		});
+
+		/***********************************************************************************************************************************************************************************************************************************************************************************************************
+		 * File Validation
+		 **********************************************************************************************************************************************************************************************************************************************************************************************************/
+
+		$( '.validateImageFile' ).bind( 'change', function () {
+			if ( $( this ).val() != '' ) {
+				var fileName = $( this ).val();
+				var fileExtension = fileName.split( '.' )[ fileName.split( '.' ).length - 1 ];
+				var fileSize = this.files[ 0 ].size;
+
+				if ( !( fileExtension === "jpg" || fileExtension === "jpeg" || fileExtension === "png" || fileExtension === "JPG" || fileExtension === "JPEG" ) ) {
+					$( this ).val( '' );
+					$( '#fileEr' ).html( "<span class='inputError'>File format is not supported</span>" ).show().fadeOut( messageTimeOut );
+
+					$( this ).focus();
+					// file size max 5MB allowed 5242880
+				} else if ( fileSize > 1200000 ) {
+					$( this ).val( '' );
+					$( '#fileEr' ).html( "<span class='inputError'>File size is too large</span>" ).show().fadeOut( messageTimeOut );
+					$( this ).focus();
+					return false;
+				} else {
+					$( '#fileEr' ).html( "" );
+					reader.readAsDataURL($('#fileUploadForm')[0].files[0]);
+					return true;
+				}
+			}
+		} );
+
+		$( '.validateFile' ).bind( 'change', function () {
+			if ( $( this ).val() != '' ) {
+				var fileName = $( this ).val();
+				var fileExtension = fileName.split( '.' )[ fileName.split( '.' ).length - 1 ];
+				var fileSize = this.files[ 0 ].size;
+
+				if ( !( fileExtension === "jpg" || fileExtension === "pdf" ) ) {
+					$( this ).val( '' );
+					$( '#fileError' ).html( "<span class='inputError'>File format is not supported</span>" ).show().fadeOut( messageTimeOut );
+
+					$( this ).focus();
+					// file size max 5MB allowed 5242880
+				} else if ( fileSize > 2048000 ) {
+					$( this ).val( '' );
+					$( '#fileError' ).html( "<span class='inputError'>File size is too large</span>" ).show().fadeOut( messageTimeOut );
+					$( this ).focus();
+					return false;
+				} else {
+					$( '#fileError' ).html( "" );
+					return true;
+				}
+			}
+		} );
+
+		$( '.removeImg' ).bind( 'click', function () {
+			$( "#removeBtn" ).hide();
+			$( "#imgSpn" ).attr( 'src', "" );
+			$( ".b64" ).val( "" );
+		} );
+
+		$( '.removeFile' ).bind( 'click', function () {
+			$( "#removeFileBtn" ).hide();
+			$( ".b64" ).val( "" );
+			$( "#fileSpan" ).attr( 'href', "" );
+		} );
+
+		var reader = new FileReader();
+		reader.onload = function(r_event) {
+			$('#showImage').show()
+			document.getElementById('imgSpn').setAttribute('src', r_event.target.result);
+		}
+
+
+		/***********************************************************************************************************************************************************************************************************************************************************************************************************
+		 * File Validation End
+		 **********************************************************************************************************************************************************************************************************************************************************************************************************/
 
 
 		$('#atomic-ski-data-table').DataTable({
@@ -380,7 +506,7 @@ tr.shown td.details-control {
 		
 		
 	</script>
-	<script th:if="${santoDomingo.santoDomingoId == null}">
+	<script th:if="${santoDomingo.id== null}">
 		$('#fecha').datepicker('setDate', 'today');
 		$('#Oficio').datepicker('setDate', 'today');
 		

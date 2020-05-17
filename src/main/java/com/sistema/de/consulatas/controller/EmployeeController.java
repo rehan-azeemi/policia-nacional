@@ -1,19 +1,14 @@
 package com.sistema.de.consulatas.controller;
 
-import javax.servlet.http.HttpServletRequest;
-
+import com.sistema.de.consulatas.model.Employee;
+import com.sistema.de.consulatas.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import com.sistema.de.consulatas.model.Employee;
-import com.sistema.de.consulatas.services.EmployeeService;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class EmployeeController {
@@ -49,7 +44,7 @@ public class EmployeeController {
 	public ModelAndView getEmployee() {
 		ModelAndView view =  new ModelAndView("employee");
 		view.addObject("employee", new Employee());
-		view.addObject("employees", employeeService.getAllEmployee(1));
+		view.addObject("employees", employeeService.getAllEmployee());
 		return view;
 		
 	}
@@ -65,7 +60,7 @@ public class EmployeeController {
 	public String editEmployee(Model model,@PathVariable Long userId) {
 		
 		model.addAttribute("employee", employeeService.getEmployee(userId));
-		model.addAttribute("employees", employeeService.getAllEmployee(1));
+		model.addAttribute("employees", employeeService.getAllEmployee());
 		
 		return "employee";
 		

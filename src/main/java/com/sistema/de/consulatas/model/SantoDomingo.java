@@ -9,11 +9,9 @@ import javax.persistence.Id;
 import com.sistema.de.consulatas.enums.Documento;
 
 @Entity
-public class SantoDomingo {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long santoDomingoId;
-	@Column(unique = true)
+public class SantoDomingo extends BaseEntity{
+
+	@Column
 	private String fecha;
 	@Column
 	private String fotoPath;
@@ -37,12 +35,7 @@ public class SantoDomingo {
 	private String fechaDeOficio;
 	@Column
 	private Documento documento;
-	public Long getSantoDomingoId() {
-		return santoDomingoId;
-	}
-	public void setSantoDomingoId(Long santoDomingoId) {
-		this.santoDomingoId = santoDomingoId;
-	}
+
 	public String getFecha() {
 		return fecha;
 	}

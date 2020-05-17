@@ -1,67 +1,66 @@
 package com.sistema.de.consulatas.services;
 
-import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+import com.sistema.de.consulatas.model.Employee;
+import com.sistema.de.consulatas.repository.EmployeeRepository;
+import com.sistema.de.consulatas.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.sistema.de.consulatas.model.Employee;
-import com.sistema.de.consulatas.repository.EmployeeRepository;
-import com.sistema.de.consulatas.repository.RoleRepository;
+import java.util.List;
 
 
 @Service
 public class EmployeeService {
-	
+
+	@Autowired
 	private EmployeeRepository employeeRepository;
+	@Autowired()
 	private RoleRepository roleRepository;
+	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-	@Autowired
-	public EmployeeService(EmployeeRepository employeeRepository, 
-						RoleRepository roleRepository,BCryptPasswordEncoder bCryptPasswordEncoder) {
-		
-		this.employeeRepository = employeeRepository;
-		this.roleRepository = roleRepository;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-	}
+//	@Autowired
+//	public EmployeeService(EmployeeRepository employeeRepository,
+//						   @Qualifier("roleRepository") RoleRepository roleRepository,BCryptPasswordEncoder bCryptPasswordEncoder) {
+//
+//		this.employeeRepository = employeeRepository;
+//		this.roleRepository = roleRepository;
+//		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+//	}
 	
 	public Employee findUserByUsername(String username) {
 		return employeeRepository.findByUsername(username);
 	}
 	
 	public void saveEmployeeService(Employee e) {
-		if(e.getUserId() != null) {
-			Employee emp = employeeRepository.findByUserId(e.getUserId());
-			emp.setLastModified(new Timestamp(System.currentTimeMillis()));
+		if(e.getId() != null) {
+			Employee emp = employeeRepository.findById(e.getId()).get();
 			emp.setName(e.getName());
 			emp.setPassword(bCryptPasswordEncoder.encode(e.getPassword()));
 			emp.setUsername(e.getUsername());
 			employeeRepository.save(emp);
 		}
 		else {
-			e.setActive(1);
-			e.setLastModified(new Timestamp(System.currentTimeMillis()));
 			e.setPassword(bCryptPasswordEncoder.encode(e.getPassword()));
 			employeeRepository.save(e);
 		}
 		
 	}
 	
-	public List<Employee> getAllEmployee(Integer active){
-		return employeeRepository.findByActive(active);
+	public List<Employee> getAllEmployee(){
+		return employeeRepository.findByIsDeletedFalse();
 	}
 	
 	public void deleteEmployee(Long userId) {
-		Employee e = employeeRepository.findByUserId(userId);
-		e.setActive(0);
-		employeeRepository.save(e);
+		Employee e = getEmployee(userId);
+		if(e!=null) {
+			e.setIsDeleted(Boolean.TRUE);
+			employeeRepository.save(e);
+		}
 	}
 	
 	public Employee getEmployee(Long userId) {
-		return employeeRepository.findByUserId(userId);
+		return employeeRepository.findById(userId).orElse(null);
 	}
 }

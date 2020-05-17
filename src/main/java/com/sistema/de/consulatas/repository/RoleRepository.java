@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.sistema.de.consulatas.model.Role;
 
 
-@Repository("roleRepository")
 public interface RoleRepository extends JpaRepository<Role, Long>{
 	Role findByRole(String role);
 }
