@@ -38,6 +38,7 @@ public abstract class BaseEntity implements Serializable {
     @LastModifiedBy
     private String modifiedBy;
 
+    
     private Boolean isDeleted;
 
     @PrePersist

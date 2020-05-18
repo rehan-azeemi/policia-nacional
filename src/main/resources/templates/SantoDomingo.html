@@ -73,7 +73,7 @@ tr.shown td.details-control {
 					aria-expanded="false" aria-label="Toggle navigation">
 					<i class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand" href="/employee"><img th:src="@{/images/ologo.jpeg}" /></a>
+				<a class="navbar-brand" href="/employee"><img th:src="@{/images/ologo.png}" /></a>
 			</div>
 
 			<div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -89,7 +89,9 @@ tr.shown td.details-control {
 					<li><a th:href="@{/santo/domingo}"> <i
 							class="menu-icon fa fa-laptop"></i>Add Data
 					</a></li>
-					
+					<li><a th:href="@{/santo/domingo/report}"> <i
+							class="menu-icon fa fa-laptop"></i>Reports
+					</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -152,13 +154,13 @@ tr.shown td.details-control {
 							</div>
 							<hr>
 							<div class="form-row">
-								<div class="form-group col-md-6">
+								<div class="form-group col-md-5">
 									<label for="inputEmail4">Fecha</label> <input type="text"
 										class="form-control" name="firstName" placeholder="First Name"
 										id="fecha"
 										th:field="*{fecha}">
 								</div>
-								<div class="form-group col-md-6">
+								<div class="form-group col-md-5">
 									<label for="inputState">Documento</label> <select
 										name="documento"
 										th:field="*{documento}"
@@ -168,10 +170,15 @@ tr.shown td.details-control {
 											th:value="${doc}" th:utext="${doc}"></option>
 									</select>
 								</div>
+								<div class="form-group col-md-2">
+									<label for="inputEmail4">Documento Numero</label> <input type="text"
+										class="form-control" name="firstName" placeholder="Documento Numero"
+										th:field="*{documentoNumero}">
+								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="inputCity">Primer Nombre</label> <input type="email"
+									<label for="inputCity">Primer Nombre</label> <input type="text"
 										class="form-control" name="email" placeholder="Primer Nombre"
 										th:field="*{primerNombre}">
 								</div>
@@ -291,12 +298,15 @@ tr.shown td.details-control {
 										<td><a
 											th:href="@{/santo/domingo/edit/{id}(id=${item.id})}"
 											class="btn btn-danger btn-sm">Edit</a></td>
-										<td><a
+										
+										<td th:if="${item.isDeleted}"><a
+												th:href="@{/santo/domingo/delete/{id}(id=${item.id})}"
+												class="btn btn-danger btn-sm">Recover</a></td>
+										<td th:if="${item.isDeleted}">In Active</td>
+										<td th:if="${!item.isDeleted}"><a
 												th:href="@{/santo/domingo/delete/{id}(id=${item.id})}"
 												class="btn btn-danger btn-sm">Delete</a></td>
-										<td><a
-											th:href="@{/santo/domingo/print/{id}(id=${item.id})}" target="_blank"
-											class="btn btn-danger btn-sm">Print</a></td>
+										<td th:if="${!item.isDeleted}">Active</td>
 									</tr>
 								</tbody>
 							</table>

@@ -29,9 +29,9 @@ public class SantoDomingoService {
 	@Value("${image.path}")
 	private String imageFileLocation;
 
-	public List<SantoDomingo> findAll(){ return santoDomingoRepo.findAllByIsDeletedFalse(); }
+	public List<SantoDomingo> findAll(){ return santoDomingoRepo.findAll(); }
 
-	public SantoDomingo findOne(Long id){ return santoDomingoRepo.findByIdAndIsDeletedFalse(id); }
+	public SantoDomingo findOne(Long id){ return santoDomingoRepo.findById(id).get(); }
 
 	public SantoDomingoDto getDto(Long id){
 		SantoDomingoDto santoDomingoDto = new SantoDomingoDto();
@@ -76,7 +76,7 @@ public class SantoDomingoService {
 		if(santoDomingo!=null){
 			UtilService.deleteFileIfExist(imageFileLocation,santoDomingo.getFotoPath());
 			UtilService.deleteFileIfExist(attachmentFileLocation,santoDomingo.getAttachment());
-			santoDomingo.setIsDeleted(Boolean.TRUE);
+			santoDomingo.setIsDeleted(!santoDomingo.getIsDeleted());
 			santoDomingoRepo.save(santoDomingo);
 		}
 	}

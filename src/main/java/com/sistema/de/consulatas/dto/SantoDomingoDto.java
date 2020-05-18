@@ -32,8 +32,20 @@ public class SantoDomingoDto implements Serializable {
     private String fechaDeOficio;
     
     private Documento documento;
+    
+    private String documentoNumero;
+    
+    
 
-    public Long getId() {
+    public String getDocumentoNumero() {
+		return documentoNumero;
+	}
+
+	public void setDocumentoNumero(String documentoNumero) {
+		this.documentoNumero = documentoNumero;
+	}
+
+	public Long getId() {
         return id;
     }
 
