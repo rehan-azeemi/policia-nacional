@@ -11,6 +11,7 @@ import java.util.List;
 public interface SantoDomingoRepo extends JpaRepository<SantoDomingo, Long>{
 
     List<SantoDomingo> findAllByIsDeletedFalse();
+    List<SantoDomingo> findAllByDocumentoNumero(String documentoNumero);
     SantoDomingo findByIdAndIsDeletedFalse(Long id);
     @Query(value="SELECT * FROM santo_domingo WHERE STR_TO_DATE(fecha,'%m-%d-%Y') >= STR_TO_DATE(:from,'%m-%d-%Y') AND STR_TO_DATE(fecha,'%m-%d-%Y') <= STR_TO_DATE(:to,'%m-%d-%Y')",nativeQuery=true)
 	public List<SantoDomingo> findAll(@Param("from") String from,@Param("to") String to); 

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,6 +34,12 @@ public class ReportingController {
 	public String printReport(@ModelAttribute SantoDomingoReport santoDomingoReport) {
 		reportingService.printReport(santoDomingoReport);
 		return "redirect:/santo/domingo/report";
+	}
+	
+	@GetMapping(value = URLConstants.PRINT_INDIVIDUAL)
+	private String delete(@PathVariable Long id){
+		reportingService.printIndividualReport(id);
+		return "redirect:/santo/domingo";
 	}
 
 }

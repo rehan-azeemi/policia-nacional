@@ -61,6 +61,10 @@ tr.shown td.details-control {
 	font-size: 16px;
 	cursor: pointer;
 }
+div.dataTables_wrapper {
+        width: 1000px;
+        margin: 0 auto;
+    }
 </style>
 </head>
 <body>
@@ -177,55 +181,72 @@ tr.shown td.details-control {
 								</div>
 							</div>
 							<div class="form-row">
-								<div class="form-group col-md-6">
+								<div class="form-group col-md-4">
 									<label for="inputCity">Primer Nombre</label> <input type="text"
 										class="form-control" name="email" placeholder="Primer Nombre"
 										th:field="*{primerNombre}">
 								</div>
-								<div class="form-group col-md-6">
+								<div class="form-group col-md-4">
 									<label for="inputZip">Segundo Nombre</label> <input type="text"
 										class="form-control" name="phone" placeholder="Segundo Nombre"
 										th:field="*{segundoNombre}">
 								</div>
+								<div class="form-group col-md-4">
+									<label for="inputZip">Fecha De Nacimiento</label> <input type="text"
+										class="form-control" name="phone" placeholder="Segundo Nombre"
+										id = "fechaDeNacimiento"
+										th:field="*{fechaDeNacimiento}">
+								</div>
 							</div>
 							<div class="form-row">
-							<div class="form-group col-md-6">
+							<div class="form-group col-md-4">
 								<label for="inputAddress">Apellidos</label> <input type="text"
 									class="form-control" name="address" placeholder="Apellidos"
 									th:field="*{apellidos}">
 							</div>
-								<div class="form-group col-md-6">
+								<div class="form-group col-md-4">
 									<label for="inputZip">Nacionalidad</label> <input
 										type="text" class="form-control" name="localAccomodation"
 										placeholder="Nacionalidad"
 										th:field="*{nacionalidad}">
 								</div>
+								<div class="form-group col-md-4">
+									<label for="inputZip">No. De Oficio</label> <input type="text"
+										class="form-control" name="weight" placeholder="No. De Oficio"
+										th:field="*{noDeOficio}">
+								</div>
+								
 							</div>
 							<div class="form-row">
-								<div class="form-group col-md-6">
+								<div class="form-group col-md-4">
 									<label for="inputZip">Oficio Numero</label> <input
 										type="text" class="form-control" name="drivingLicenseNo"
 										placeholder="Oficio Numero"
 										th:field="*{oficioNumero}">
 								</div>
-								<div class="form-group col-md-6">
+								<div class="form-group col-md-4">
 									<label for="inputZip">Fecha De Oficio</label> <input type="text"
 										class="form-control" name="weight" placeholder="Weight"
 										id="Oficio"
 										th:field="*{fechaDeOficio}">
 								</div>
+								<div class="form-group col-md-4">
+									<label for="inputZip">Otros</label> <input type="text"
+										class="form-control" name="age" placeholder="Otros" id="age"
+										th:field="*{otros}">
+								</div>
 							</div>
 							<div class="form-row">
 								
 								<div class="form-group col-md-6">
-									<label for="inputZip">Detalle</label> <input type="text"
-										class="form-control" name="height" placeholder="Detalle"
-										th:field="*{detalle}">
+									<label for="inputZip">A Requerimiento</label> <input type="text"
+										class="form-control" name="height" placeholder="A Requerimiento"
+										th:field="*{ARequerimiento}">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="inputZip">Otros</label> <input type="text"
-										class="form-control" name="age" placeholder="Otros" id="age"
-										th:field="*{otros}">
+									<label for="inputZip">Entidad Solicitante</label> <input type="text"
+										class="form-control" name="height" placeholder="Entidad Solicitante"
+										th:field="*{entidadSolicitante}">
 								</div>
 							</div>
 							<div class="form-row" id="showFile" >
@@ -275,28 +296,38 @@ tr.shown td.details-control {
 					<div class="card-body">
 						<div class="table-responsive">
 							<table id="atomic-ski-data-table"
-								class="table table-striped table-bordered">
+								class="table display nowrap" style="width:100%">
 								<thead>
 									<tr>
+										<th>Sr.No</th>
+										<th>Nombre Y Apellidos</th>
+										<th>Fecha De Nacimiento</th>
 										<th>Documento</th>
-										<th>Primer Nombre</th>
-										<th>Fecha</th>
-										<th>Segundo Nombre</th>
-										<th>Nacionalidad</th>
+										<th>Fecha De Oficio</th>
+										<th>No. De Oficio</th>
+										<th>Entidad Solicitante</th>
+										<th>A Requerimiento</th>
 										<th>Action</th>
 										<th>Action</th>
-										<th>Action</th>
+										<th>A/I</th>
+										<th>Print</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="item : ${santoDomingoList}">
-										<td th:text="${item.documento}"></td>
-										<td th:text="${item.primerNombre}"></td>
+										<td th:text="${item.getSrNo()}"></td>
+										<td th:text="${item.primerNombre} +' '+ ${item.segundoNombre} +' '+ ${item.apellidos}"></td>
 										<td th:text="${item.fecha}"></td>
-										<td th:text="${item.segundoNombre}"></td>
-										<td th:text="${item.nacionalidad}"></td>
-										<td><a
+										<td th:text="${item.documento}"></td>
+										<td th:text="${item.fechaDeOficio}"></td>
+										<td th:text="${item.noDeOficio}"></td>
+										<td th:text="${item.entidadSolicitante}"></td>
+										<td th:text="${item.ARequerimiento}"></td>
+										<td th:if="${!item.isDeleted}"><a
 											th:href="@{/santo/domingo/edit/{id}(id=${item.id})}"
+											class="btn btn-danger btn-sm">Edit</a></td>
+										<td th:if="${item.isDeleted}"><a
+											href="#"
 											class="btn btn-danger btn-sm">Edit</a></td>
 										
 										<td th:if="${item.isDeleted}"><a
@@ -307,6 +338,9 @@ tr.shown td.details-control {
 												th:href="@{/santo/domingo/delete/{id}(id=${item.id})}"
 												class="btn btn-danger btn-sm">Delete</a></td>
 										<td th:if="${!item.isDeleted}">Active</td>
+										<td><a
+											th:href="@{/santo/domingo/report/print/{id}(id=${item.id})}"
+											class="btn btn-danger btn-sm">Print</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -420,6 +454,15 @@ tr.shown td.details-control {
 			autoclose : true
 
 		});
+		
+		$('#fechaDeNacimiento').datepicker({
+
+			format : 'mm-dd-yyyy',
+			autoclose : true
+
+		});
+		
+		
 
 		/***********************************************************************************************************************************************************************************************************************************************************************************************************
 		 * File Validation
@@ -505,13 +548,14 @@ tr.shown td.details-control {
 			"ordering" : true,
 			"info" : false,
 			"responsive" : true,
-			"autoWidth" : false,
+			"autoWidth" : true,
+			"scrollY": 200,
+	        "scrollX": true,
 			"pageLength" : 10,
-			"order" : [ [ 1, 'asc' ] ]
+			"order" : [ [ 0, 'asc' ] ]
 		});
 
 		
-
 		
 		
 		
@@ -519,6 +563,7 @@ tr.shown td.details-control {
 	<script th:if="${santoDomingo.id== null}">
 		$('#fecha').datepicker('setDate', 'today');
 		$('#Oficio').datepicker('setDate', 'today');
+		$('#fechaDeNacimiento').datepicker('setDate', 'today');
 		
 	</script>
 </body>

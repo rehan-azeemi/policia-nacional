@@ -26,7 +26,7 @@ public class SantoDomingo extends BaseEntity{
 	@Column
 	private String oficioNumero;
 	@Column
-	private String detalle;
+	private String ARequerimiento;
 	@Column
 	private String otros;
 	@Column
@@ -37,7 +37,42 @@ public class SantoDomingo extends BaseEntity{
 	private Documento documento;
 	@Column
 	private String documentoNumero;
+	@Column
+	private String fechaDeNacimiento;
+	@Column
+	private String entidadSolicitante;
+	@Column
+	private String noDeOficio;
+	public static int srNo = 0;
+	
+	public int getSrNo() {
+		return ++srNo;
+	}
 
+	public String getNoDeOficio() {
+		return noDeOficio;
+	}
+	public void setNoDeOficio(String noDeOficio) {
+		this.noDeOficio = noDeOficio;
+	}
+	public String getEntidadSolicitante() {
+		return entidadSolicitante;
+	}
+	public void setEntidadSolicitante(String entidadSolicitante) {
+		this.entidadSolicitante = entidadSolicitante;
+	}
+	public String getARequerimiento() {
+		return ARequerimiento;
+	}
+	public void setARequerimiento(String aRequerimiento) {
+		ARequerimiento = aRequerimiento;
+	}
+	public String getFechaDeNacimiento() {
+		return fechaDeNacimiento;
+	}
+	public void setFechaDeNacimiento(String fechaDeNacimiento) {
+		this.fechaDeNacimiento = fechaDeNacimiento;
+	}
 	public String getDocumentoNumero() {
 		return documentoNumero;
 	}
@@ -86,12 +121,7 @@ public class SantoDomingo extends BaseEntity{
 	public void setOficioNumero(String oficioNumero) {
 		this.oficioNumero = oficioNumero;
 	}
-	public String getDetalle() {
-		return detalle;
-	}
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
-	}
+	
 	public String getOtros() {
 		return otros;
 	}

@@ -23,7 +23,7 @@ public class SantoDomingoDto implements Serializable {
     
     private String oficioNumero;
     
-    private String detalle;
+    private String ARequerimiento;
     
     private String otros;
     
@@ -35,6 +35,34 @@ public class SantoDomingoDto implements Serializable {
     
     private String documentoNumero;
     
+    private String entidadSolicitante;
+    
+    private String noDeOficio;
+    
+    private String fechaDeNacimiento;
+    
+    
+
+	public String getFechaDeNacimiento() {
+		return fechaDeNacimiento;
+	}
+	public void setFechaDeNacimiento(String fechaDeNacimiento) {
+		this.fechaDeNacimiento = fechaDeNacimiento;
+	}
+	public String getNoDeOficio() {
+		return noDeOficio;
+	}
+	public void setNoDeOficio(String noDeOficio) {
+		this.noDeOficio = noDeOficio;
+	}
+	
+
+	public String getEntidadSolicitante() {
+		return entidadSolicitante;
+	}
+	public void setEntidadSolicitante(String entidadSolicitante) {
+		this.entidadSolicitante = entidadSolicitante;
+	}
     
 
     public String getDocumentoNumero() {
@@ -109,12 +137,12 @@ public class SantoDomingoDto implements Serializable {
         this.oficioNumero = oficioNumero;
     }
 
-    public String getDetalle() {
-        return detalle;
+    public String getARequerimiento() {
+        return ARequerimiento;
     }
 
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
+    public void setARequerimiento(String ARequerimiento) {
+        this.ARequerimiento = ARequerimiento;
     }
 
     public String getOtros() {

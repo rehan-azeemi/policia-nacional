@@ -17,7 +17,7 @@ public class SantoDomingoJRBean {
     
     private String oficioNumero;
     
-    private String detalle;
+    private String ARequerimiento;
     
     private String otros;
     
@@ -26,6 +26,50 @@ public class SantoDomingoJRBean {
     private String documento;
     
     private String documentoNumero;
+    
+    private String entidadSolicitante;
+    
+    private String active;
+    
+    private String fechaDeNacimiento;
+    
+    private String noDeOficio;
+    
+    private String imagePath;
+    
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	public String getNoDeOficio() {
+		return noDeOficio;
+	}
+	public void setNoDeOficio(String noDeOficio) {
+		this.noDeOficio = noDeOficio;
+	}
+    
+    public String getFechaDeNacimiento() {
+		return fechaDeNacimiento;
+	}
+	public void setFechaDeNacimiento(String fechaDeNacimiento) {
+		this.fechaDeNacimiento = fechaDeNacimiento;
+	}
+
+	public String getActive() {
+		return active;
+	}
+	public void setActive(String active) {
+		this.active = active;
+	}
+	public String getEntidadSolicitante() {
+		return entidadSolicitante;
+	}
+	public void setEntidadSolicitante(String entidadSolicitante) {
+		this.entidadSolicitante = entidadSolicitante;
+	}
 
 	public String getFecha() {
 		return fecha;
@@ -75,12 +119,12 @@ public class SantoDomingoJRBean {
 		this.oficioNumero = oficioNumero;
 	}
 
-	public String getDetalle() {
-		return detalle;
+	public String getARequerimiento() {
+		return ARequerimiento;
 	}
 
-	public void setDetalle(String detalle) {
-		this.detalle = detalle;
+	public void setARequerimiento(String detalle) {
+		this.ARequerimiento = detalle;
 	}
 
 	public String getOtros() {

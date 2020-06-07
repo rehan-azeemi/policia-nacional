@@ -2,6 +2,7 @@ package com.sistema.de.consulatas.controller;
 
 import com.sistema.de.consulatas.config.URLConstants;
 import com.sistema.de.consulatas.dto.SantoDomingoDto;
+import com.sistema.de.consulatas.model.SantoDomingo;
 import com.sistema.de.consulatas.services.SantoDomingoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,9 +29,11 @@ public class SantoDomingoController {
 	
 	@GetMapping
 	public ModelAndView getIndex() {
+		SantoDomingo.srNo = 0;
 		ModelAndView view = new ModelAndView("SantoDomingo");
 		view.addObject("santoDomingo", new SantoDomingoDto());
 		view.addObject("documento", santoDomingoService.getAllDocumento());
+		
         view.addObject("santoDomingoList", santoDomingoService.findAll());
 		
 		return view;
@@ -50,6 +53,7 @@ public class SantoDomingoController {
 	}
     @GetMapping(value = URLConstants.EDIT_URL)
     private ModelAndView edit(@PathVariable Long id){
+    	SantoDomingo.srNo = 0;
         ModelAndView view = new ModelAndView("SantoDomingo");
         Map<String,String> fileMap = santoDomingoService.getFileNameById(id);
         view.addObject("santoDomingo",santoDomingoService.getDto(id));
