@@ -66,4 +66,18 @@ public class SantoDomingoController {
         return view;
     }
 
+	@GetMapping(value = URLConstants.NEW_CASE)
+	private ModelAndView newCase(@PathVariable Long id){
+		SantoDomingo.srNo = 0;
+		ModelAndView view = new ModelAndView("SantoDomingo");
+		Map<String,String> fileMap = santoDomingoService.getFileNameById(id);
+		view.addObject("santoDomingo",santoDomingoService.getDtoForNewCase(id));
+		view.addObject("documento", santoDomingoService.getAllDocumento());
+		if(fileMap.get("image")!=null)
+			view.addObject("imageName","/"+imageFileLocation+fileMap.get("image"));
+		if(fileMap.get("file")!=null)
+			view.addObject("attachmentName","/"+attachmentFileLocation+fileMap.get("file"));
+		view.addObject("santoDomingoList", santoDomingoService.findAll());
+		return view;
+	}
 }

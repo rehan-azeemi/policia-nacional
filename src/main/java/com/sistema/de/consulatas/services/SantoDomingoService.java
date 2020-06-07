@@ -40,6 +40,18 @@ public class SantoDomingoService {
 		return santoDomingoDto;
 	}
 
+	public SantoDomingoDto getDtoForNewCase(Long id){
+		SantoDomingoDto santoDomingoDto = new SantoDomingoDto();
+		SantoDomingo santoDomingo = findOne(id);
+		BeanUtils.copyProperties(santoDomingo,santoDomingoDto);
+		santoDomingoDto.setId(null);
+		santoDomingoDto.setEntidadSolicitante(null);
+		santoDomingoDto.setARequerimiento(null);
+		santoDomingoDto.setOtros(null);
+		santoDomingoDto.setOficioNumero(null);
+		return santoDomingoDto;
+	}
+
 	public void save(SantoDomingoDto santoDomingoDto, MultipartFile image, MultipartFile file) {
 		SantoDomingo existSantoDomingo = new SantoDomingo();
 		if(santoDomingoDto != null){

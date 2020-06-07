@@ -64,6 +64,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         web
                 .ignoring()
                 .antMatchers("/assets/**")
-                .antMatchers("/images/**");
+                .antMatchers("/images/**")
+        		;
     }
 }
