@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="santoDomingo" pageWidth="720" pageHeight="792" columnWidth="680" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2626d2cc-afd5-4a0c-b65d-3e5bbda9311c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="14"/>
-	<property name="ireport.y" value="70"/>
+	<property name="ireport.y" value="236"/>
 	<field name="fecha" class="java.lang.String"/>
 	<field name="primerNombre" class="java.lang.String"/>
 	<field name="segundoNombre" class="java.lang.String"/>
@@ -82,7 +82,7 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="110" splitType="Stretch">
+		<band height="113" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="92" width="129" height="17" backcolor="#CCCCCC" uuid="2cca6e5d-fc02-4e06-b182-ce6cb0f4610c"/>
 				<textElement verticalAlignment="Top">
@@ -164,10 +164,13 @@
 				<textElement verticalAlignment="Top"/>
 				<text><![CDATA[DOCUMENTO NUMERO]]></text>
 			</staticText>
+			<line>
+				<reportElement x="0" y="110" width="680" height="1" uuid="b3d471d0-6b8e-45f9-89d2-76cff2e5ee8a"/>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="140" splitType="Stretch">
+		<band height="143" splitType="Stretch">
 			<textField>
 				<reportElement x="130" y="19" width="125" height="17" uuid="d1818763-25cd-43e5-8de5-f27c95892510"/>
 				<textElement>
@@ -235,6 +238,9 @@
 				</textElement>
 				<text><![CDATA[OTROS]]></text>
 			</staticText>
+			<line>
+				<reportElement x="1" y="141" width="679" height="1" uuid="24a86603-9af3-48cf-a15e-e908287d13e9"/>
+			</line>
 		</band>
 	</detail>
 </jasperReport>

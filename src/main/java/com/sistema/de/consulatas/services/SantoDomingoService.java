@@ -69,7 +69,17 @@ public class SantoDomingoService {
 					String filePath = uploadFile(file, fileName , attachmentFileLocation);
 					existSantoDomingo.setAttachment(filePath);
 				}
+
 				BeanUtils.copyProperties(santoDomingoDto, existSantoDomingo);
+
+				if(santoDomingoDto.getId() == null && santoDomingoDto.getDocumentoNumero() != null && (image.getOriginalFilename().isEmpty() || file.getOriginalFilename().isEmpty())){
+					List<SantoDomingo> santoDomingos = santoDomingoRepo.findAllByDocumentoNumero(santoDomingoDto.getDocumentoNumero());
+					if(!santoDomingos.isEmpty()){
+						existSantoDomingo.setFotoPath(santoDomingos.get(0).getFotoPath());
+						existSantoDomingo.setAttachment(santoDomingos.get(0).getAttachment());
+					}
+				}
+
 				santoDomingoRepo.save(existSantoDomingo);
 			}
 		}

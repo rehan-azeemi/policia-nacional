@@ -13,7 +13,7 @@ public class SistemaDeConsulatasApplication {
 	private static ConfigurableApplicationContext applicationContext;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SistemaDeConsulatasApplication.class, args);
+		applicationContext = SpringApplication.run(SistemaDeConsulatasApplication.class, args);
 	}
 
 	@GetMapping("/shutdown")

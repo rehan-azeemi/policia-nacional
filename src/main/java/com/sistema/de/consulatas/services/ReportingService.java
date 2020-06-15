@@ -1,6 +1,7 @@
 package com.sistema.de.consulatas.services;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,6 +10,9 @@ import java.util.Map;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.ResourceUtils;
@@ -38,9 +42,11 @@ public class ReportingService {
 	@Value("${image.path}")
 	private String imageFileLocation;
 
+	@Autowired
+	ResourceLoader resourceLoader;
+
 	public void printReport(SantoDomingoReport santoDomingoReport) {
 		try {
-
 			File file = ResourceUtils.getFile("santoDomingo.jrxml");
 			JasperReport jr = JasperCompileManager.compileReport(file.getAbsolutePath());
 			List<SantoDomingo> listSantoDomingo = santoDomingoRepo.findAll(santoDomingoReport.getFrom(),santoDomingoReport.getTo());
@@ -65,7 +71,7 @@ public class ReportingService {
 			if (santoDomingoReport.getType().equals("1")) {
 				JasperPrintManager.printReport(jp, false);
 			} else {
-				JasperExportManager.exportReportToPdfFile(jp, santoDomingoReport.getFrom()+" to "+santoDomingoReport.getTo()+"-"+System.currentTimeMillis()+".pdf");
+				JasperExportManager.exportReportToPdfFile(jp, "pdf-reports/"+santoDomingoReport.getFrom()+" to "+santoDomingoReport.getTo()+"-"+System.currentTimeMillis()+".pdf");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,7 +110,7 @@ public class ReportingService {
 //			if (santoDomingoReport.getType().equals("1")) {
 //				JasperPrintManager.printReport(jp, false);
 //			} else {
-			JasperExportManager.exportReportToPdfFile(jp, santoDomingos.getDocumentoNumero()+"-"+System.currentTimeMillis()+".pdf");
+			JasperExportManager.exportReportToPdfFile(jp, "pdf-reports/"+santoDomingos.getDocumentoNumero()+"-"+System.currentTimeMillis()+".pdf");
 			//}
 		} catch (Exception e) {
 			e.printStackTrace();
