@@ -32,7 +32,7 @@ public class EmployeeController {
         }
         else if(request.isUserInRole("ROLE_USER")) {
         	
-        	return "redirect:/SantoDomingo";
+        	return "redirect:/santo/domingo";
     		
         }
         

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="santoDomingo" pageWidth="720" pageHeight="792" columnWidth="680" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2626d2cc-afd5-4a0c-b65d-3e5bbda9311c">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="14"/>
 	<property name="ireport.y" value="0"/>
 	<field name="fecha" class="java.lang.String"/>
 	<field name="primerNombre" class="java.lang.String"/>
@@ -32,28 +32,28 @@
 				<imageExpression><![CDATA["logo\\ologo.jpeg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="236" y="69" width="204" height="16" uuid="49a8425c-4777-49c1-8d58-e385ccd0fc13"/>
-				<textElement>
+				<reportElement x="0" y="69" width="680" height="16" uuid="49a8425c-4777-49c1-8d58-e385ccd0fc13"/>
+				<textElement textAlignment="Center">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Dirección General de la Policía Nacional]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="236" y="84" width="204" height="16" uuid="81467fd9-8b86-44e3-8851-7b00ba7b1cf6"/>
+				<reportElement x="0" y="84" width="680" height="16" uuid="81467fd9-8b86-44e3-8851-7b00ba7b1cf6"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Dirección Central de Investigación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="236" y="100" width="204" height="16" uuid="d31025c0-fe73-47fd-bed7-ce25d3fd88c5"/>
+				<reportElement x="0" y="100" width="680" height="16" uuid="d31025c0-fe73-47fd-bed7-ce25d3fd88c5"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[O.I.P.C. OCN-INTERPOL Santo Domingo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="236" y="116" width="204" height="16" uuid="e22c9cac-44da-4fdf-b345-55b7a83633bf"/>
+				<reportElement x="0" y="116" width="680" height="16" uuid="e22c9cac-44da-4fdf-b345-55b7a83633bf"/>
 				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
@@ -63,13 +63,6 @@
 				<reportElement x="345" y="0" width="50" height="100" uuid="5c3adc97-8c0e-4bf2-b07b-01f5627fe9ad"/>
 				<imageExpression><![CDATA["logo\\interpol.jpg"]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="189" y="132" width="295" height="16" uuid="50a71a5a-3656-4386-a524-6cd57e8c4e96"/>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[“Año de la Consolidación de la Seguridad Alimentaria”]]></text>
-			</staticText>
 		</band>
 	</title>
 	<columnHeader>

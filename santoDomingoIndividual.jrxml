@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="santoDomingo" pageWidth="720" pageHeight="792" columnWidth="680" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2626d2cc-afd5-4a0c-b65d-3e5bbda9311c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="14"/>
-	<property name="ireport.y" value="236"/>
+	<property name="ireport.y" value="0"/>
 	<field name="fecha" class="java.lang.String"/>
 	<field name="primerNombre" class="java.lang.String"/>
 	<field name="segundoNombre" class="java.lang.String"/>
@@ -33,43 +33,36 @@
 				<imageExpression><![CDATA["logo\\ologo.jpeg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="236" y="69" width="204" height="16" uuid="49a8425c-4777-49c1-8d58-e385ccd0fc13"/>
-				<textElement>
-					<font size="10" isBold="true"/>
+				<reportElement x="1" y="69" width="679" height="16" uuid="49a8425c-4777-49c1-8d58-e385ccd0fc13"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Dirección General de la Policía Nacional]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="236" y="84" width="204" height="16" uuid="81467fd9-8b86-44e3-8851-7b00ba7b1cf6"/>
+				<reportElement x="1" y="84" width="679" height="16" uuid="81467fd9-8b86-44e3-8851-7b00ba7b1cf6"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Dirección Central de Investigación]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="236" y="100" width="204" height="16" uuid="d31025c0-fe73-47fd-bed7-ce25d3fd88c5"/>
+				<reportElement x="1" y="100" width="679" height="16" uuid="d31025c0-fe73-47fd-bed7-ce25d3fd88c5"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[O.I.P.C. OCN-INTERPOL Santo Domingo]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="236" y="116" width="204" height="16" uuid="e22c9cac-44da-4fdf-b345-55b7a83633bf"/>
-				<textElement textAlignment="Center">
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[“Todo por la Patria”]]></text>
 			</staticText>
 			<image>
 				<reportElement x="345" y="0" width="50" height="100" uuid="5c3adc97-8c0e-4bf2-b07b-01f5627fe9ad"/>
 				<imageExpression><![CDATA["logo\\interpol.jpg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="189" y="132" width="295" height="16" uuid="50a71a5a-3656-4386-a524-6cd57e8c4e96"/>
+				<reportElement x="1" y="116" width="679" height="16" uuid="a0874359-70f2-4d25-89e9-eb46c75a3b3f"/>
 				<textElement textAlignment="Center">
-					<font isBold="false"/>
+					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[“Año de la Consolidación de la Seguridad Alimentaria”]]></text>
+				<text><![CDATA[´´TODO POR LA PATRIA´´]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -88,14 +81,14 @@
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[DOCUMENTO]]></text>
+				<text><![CDATA[DOCUMENTO:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="7" width="129" height="17" backcolor="#CCCCCC" uuid="e8a38890-d433-4c29-b084-0c3ebe8154d4"/>
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[PRIMER NOMBRE]]></text>
+				<text><![CDATA[PRIMER NOMBRE:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="130" y="7" width="125" height="17" uuid="32af071f-4d8e-482f-90e4-a73f025e36c2"/>
@@ -106,7 +99,7 @@
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[SEGUNDO NOMBRE]]></text>
+				<text><![CDATA[SEGUNDO NOMBRE:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="130" y="24" width="125" height="17" uuid="fd479018-f3c9-4961-99a7-8d32ef81578e"/>
@@ -117,21 +110,21 @@
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[APELLIDOS]]></text>
+				<text><![CDATA[APELLIDOS:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="58" width="129" height="17" backcolor="#CCCCCC" uuid="55659995-c308-46a2-a8e1-aebf82051ebf"/>
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[FECHA DE NACIMIENTO]]></text>
+				<text><![CDATA[FECHA DE NACIMIENTO:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="75" width="129" height="17" backcolor="#CCCCCC" uuid="ccc95dad-57d9-4c66-9f6c-c08eb5a861cf"/>
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[NACIONALIDAD]]></text>
+				<text><![CDATA[NACIONALIDAD:]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="130" y="41" width="125" height="17" uuid="923b8d9f-4eed-478b-831e-9a39286ab863"/>
@@ -162,7 +155,7 @@
 			<staticText>
 				<reportElement x="284" y="92" width="129" height="17" backcolor="#CCCCCC" uuid="6c920549-31c1-458c-a261-1e298f9f094f"/>
 				<textElement verticalAlignment="Top"/>
-				<text><![CDATA[DOCUMENTO NUMERO]]></text>
+				<text><![CDATA[DOCUMENTO NUMERO:]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="110" width="680" height="1" uuid="b3d471d0-6b8e-45f9-89d2-76cff2e5ee8a"/>
@@ -170,77 +163,77 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="143" splitType="Stretch">
+		<band height="165" splitType="Stretch">
 			<textField>
-				<reportElement x="130" y="19" width="125" height="17" uuid="d1818763-25cd-43e5-8de5-f27c95892510"/>
+				<reportElement x="130" y="19" width="283" height="17" uuid="d1818763-25cd-43e5-8de5-f27c95892510"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{fechaDeOficio}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="129" y="53" width="551" height="43" uuid="74233c36-1a1e-48ba-b3d0-97440ca547e1"/>
+				<reportElement positionType="Float" x="129" y="75" width="551" height="43" uuid="74233c36-1a1e-48ba-b3d0-97440ca547e1"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{entidadSolicitante}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement positionType="Float" x="129" y="96" width="551" height="43" uuid="e4267999-8aab-44e8-aa0b-a06daee98c79"/>
+				<reportElement positionType="Float" x="129" y="118" width="551" height="43" uuid="e4267999-8aab-44e8-aa0b-a06daee98c79"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ARequerimiento}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="130" y="2" width="125" height="17" uuid="beb19dce-043b-4b8c-b89c-ed908706653b"/>
+				<reportElement x="130" y="2" width="283" height="17" uuid="beb19dce-043b-4b8c-b89c-ed908706653b"/>
 				<textElement>
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{noDeOficio}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="19" width="130" height="17" backcolor="#CCCCCC" uuid="bbe6db2b-2f43-415f-bc51-f7c3aec5c39c"/>
-				<textElement verticalAlignment="Top">
-					<paragraph leftIndent="3"/>
-				</textElement>
-				<text><![CDATA[FECHA DE OFICIO]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="0" y="2" width="130" height="17" backcolor="#CCCCCC" uuid="bc3a2a62-eb9d-457c-90d3-f51687dd6a29"/>
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[NO. DE OFICIO]]></text>
+				<text><![CDATA[NO. DE OFICIO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="96" width="129" height="43" backcolor="#CCCCCC" uuid="29e863a2-3543-4527-a909-7e9fa4496e70"/>
+				<reportElement x="0" y="118" width="129" height="43" backcolor="#CCCCCC" uuid="29e863a2-3543-4527-a909-7e9fa4496e70"/>
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[A REQUERIMIENTO]]></text>
+				<text><![CDATA[A REQUERIMIENTO:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="53" width="129" height="43" backcolor="#CCCCCC" uuid="1eeaef8b-8534-436e-95a7-3f79e384468c"/>
+				<reportElement x="0" y="75" width="129" height="43" backcolor="#CCCCCC" uuid="1eeaef8b-8534-436e-95a7-3f79e384468c"/>
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[ENTIDAD SOLICITANTE]]></text>
+				<text><![CDATA[ENTIDAD SOLICITANTE:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="129" y="36" width="126" height="17" uuid="51267b66-5f51-4140-bddf-24ef7a58cf1c"/>
+				<reportElement x="129" y="36" width="551" height="39" uuid="51267b66-5f51-4140-bddf-24ef7a58cf1c"/>
 				<textFieldExpression><![CDATA[$F{otros}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="36" width="130" height="17" backcolor="#CCCCCC" uuid="0687f8c3-bb9b-4e17-8649-60b9902bdb92"/>
+				<reportElement x="0" y="36" width="130" height="39" backcolor="#CCCCCC" uuid="0687f8c3-bb9b-4e17-8649-60b9902bdb92"/>
 				<textElement verticalAlignment="Top">
 					<paragraph leftIndent="3"/>
 				</textElement>
-				<text><![CDATA[OTROS]]></text>
+				<text><![CDATA[OTROS:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="1" y="141" width="679" height="1" uuid="24a86603-9af3-48cf-a15e-e908287d13e9"/>
+				<reportElement x="1" y="163" width="679" height="1" uuid="24a86603-9af3-48cf-a15e-e908287d13e9"/>
 			</line>
+			<staticText>
+				<reportElement x="1" y="19" width="130" height="17" backcolor="#CCCCCC" uuid="bbe6db2b-2f43-415f-bc51-f7c3aec5c39c"/>
+				<textElement verticalAlignment="Top">
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[FECHA DE OFICIO:]]></text>
+			</staticText>
 		</band>
 	</detail>
 </jasperReport>
